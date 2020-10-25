@@ -8,15 +8,11 @@ Main movea.l #STRING,a0  ; Initialise A0 avec l'adresse de la chaîne.
 
 StrLen move.b (a0)+,d1       ;Compte le nobmre de caracteres dans STRING.
     beq quit
-    sub.b #$20,d1
-    beq Loop
-    bne StrLen
-
-Loop add.l #1,d0
-    bpl StrLen
+    add.l #1,d0
+    bra StrLen
 
 quit illegal
 
     org $550
 
-STRING dc.b "Cette  chaine  comporte  8  espaces.",0
+STRING dc.b "Cette",0
